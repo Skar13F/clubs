@@ -29,8 +29,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         btnViewData.setOnClickListener {
-            // Aquí iría el intent para la pantalla de ver datos
-            // startActivity(Intent(this, ViewDataActivity::class.java))
+            val intent = Intent(this, DataActivity::class.java)
+            startActivity(intent)
         }
     }
 }
