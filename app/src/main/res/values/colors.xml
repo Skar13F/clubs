@@ -1,16 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primary">#3F51B5</color>
-    <color name="primary_dark">#303F9F</color>
-    <color name="primary_light">#C5CAE9</color>
-    <color name="accent">#FF4081</color>
-    <color name="text_primary">#212121</color>
-    <color name="text_secondary">#757575</color>
-    <color name="background">#F5F5F5</color>
-    <color name="white">#FFFFFF</color>
-    <color name="button_text">#FFFFFF</color>
-    <color name="table_header">#6200EE</color>
-    <color name="table_row_even">#FFFFFF</color>
-    <color name="table_row_odd">#F5F5F5</color>
-    <color name="text_white">#FFFFFF</color>
+    <color name="primary">#3F51B5</color>          <!-- Azul primario -->
+    <color name="primary_dark">#303F9F</color>      <!-- Azul oscuro -->
+    <color name="primary_light">#C5CAE9</color>     <!-- Azul claro -->
+    <color name="accent">#FF4081</color>            <!-- Rosa/accent -->
+
+    <!-- Colores de texto -->
+    <color name="text_primary">#212121</color>      <!-- Texto principal -->
+    <color name="text_secondary">#757575</color>    <!-- Texto secundario (gris) -->
+    <color name="text_white">#FFFFFF</color>        <!-- Texto blanco -->
+
+    <!-- Fondos -->
+    <color name="background">#F5F5F5</color>        <!-- Fondo general gris claro -->
+    <color name="white">#FFFFFF</color>             <!-- Blanco puro -->
+
+    <!-- Tablas -->
+    <color name="table_header">#272F63</color>      <!-- Encabezados -->
+    <color name="table_row_even">#FFFFFF</color>    <!-- Filas pares -->
+    <color name="table_row_odd">#F5F5F5</color>     <!-- Filas impares -->
+
+    <color name="button_background">#3F51B5</color> <!-- Fondo de botones -->
+    <color name="hint_color">#9E9E9E</color>       <!-- Color para hints -->
+    <color name="spinner_background">#FFFFFF</color><!-- Fondo del spinner -->
 </resources>
