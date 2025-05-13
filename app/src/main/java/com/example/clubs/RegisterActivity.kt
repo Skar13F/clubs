@@ -1,5 +1,6 @@
 package com.example.clubs
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.*
@@ -14,6 +15,7 @@ class RegisterActivity : AppCompatActivity() {
     private lateinit var etName: EditText
     private lateinit var etEmail: EditText
     private lateinit var btnSave: Button
+    private lateinit var btnBack: Button
 
     private lateinit var db: FirebaseFirestore
     private var clubList: MutableList<String> = mutableListOf()
@@ -38,6 +40,16 @@ class RegisterActivity : AppCompatActivity() {
 
         btnSave.setOnClickListener {
             guardarEstudiante()
+        }
+
+        btnBack = findViewById(R.id.btnBack)
+        btnBack.setOnClickListener {
+            finish()
+
+            val intent = Intent(this, MainActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+            startActivity(intent)
+            finish()
         }
     }
 

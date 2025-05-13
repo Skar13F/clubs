@@ -54,7 +54,7 @@ class DataActivity : AppCompatActivity() {
 
         btnBack = findViewById(R.id.btnBack)
         btnBack.setOnClickListener {
-            finish() // Esto debería funcionar si navegaste correctamente
+            finish()
 
             val intent = Intent(this, MainActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
