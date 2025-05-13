@@ -43,13 +43,25 @@ class RegisterActivity : AppCompatActivity() {
         }
 
         btnBack = findViewById(R.id.btnBack)
-        btnBack.setOnClickListener {
-            finish()
+        setupButtonElevationEffect(btnBack)
 
+        btnBack.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
             startActivity(intent)
             finish()
+        }
+    }
+
+    @Suppress("ClickableViewAccessibility")
+    private fun setupButtonElevationEffect(view: View) {
+        view.setOnTouchListener { v, event ->
+            when (event.action) {
+                android.view.MotionEvent.ACTION_DOWN -> v.translationZ = 8f
+                android.view.MotionEvent.ACTION_UP,
+                android.view.MotionEvent.ACTION_CANCEL -> v.translationZ = 0f
+            }
+            false
         }
     }
 
