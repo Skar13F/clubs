@@ -24,8 +24,8 @@ class MainActivity : AppCompatActivity() {
         val btnViewData = findViewById<Button>(R.id.btnViewData)
 
         btnRegister.setOnClickListener {
-            // Aquí iría el intent para la pantalla de registro
-            // startActivity(Intent(this, RegisterActivity::class.java))
+            val intent = Intent(this, RegisterActivity::class.java)
+            startActivity(intent)
         }
 
         btnViewData.setOnClickListener {

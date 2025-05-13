@@ -1,4 +1,4 @@
-package com.example.clubs;
+package com.example.clubs.model;
 
 data class Club(
         val id: String = "",
