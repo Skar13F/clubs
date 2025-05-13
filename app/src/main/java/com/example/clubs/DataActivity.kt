@@ -64,6 +64,9 @@ class DataActivity : AppCompatActivity() {
     }
 
     private fun verifyUser(studentId: String) {
+        studentList.clear()
+        adapter.notifyDataSetChanged()
+        resetSpinner()
         db.collection("admins").document(studentId)
             .get()
             .addOnSuccessListener { adminDoc ->
@@ -98,7 +101,7 @@ class DataActivity : AppCompatActivity() {
                                     Toast.makeText(this, "No estás inscrito en ningún club", Toast.LENGTH_SHORT).show()
                                 }
                             } else {
-                                Toast.makeText(this, "ID no encontrado", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(this, "Usuario no encontrado", Toast.LENGTH_SHORT).show()
                             }
                         }
                 }
@@ -134,6 +137,7 @@ class DataActivity : AppCompatActivity() {
                 adapterSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                 spinnerClubs.adapter = adapterSpinner
                 spinnerClubs.visibility = View.VISIBLE
+                spinnerClubs.isEnabled = true
 
                 spinnerClubs.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
                     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
@@ -169,12 +173,21 @@ class DataActivity : AppCompatActivity() {
         db.collection("clubs").document(clubId)
             .get()
             .addOnSuccessListener { clubDoc ->
-                val members = clubDoc.get("members") as? Map<*, *> ?: return@addOnSuccessListener
+                val members = clubDoc.get("members") as? Map<*, *> ?: run {
+                    studentList.clear()
+                    adapter.notifyDataSetChanged()
+                    Toast.makeText(this, "No hay datos de miembros en este club", Toast.LENGTH_SHORT).show()
+                    return@addOnSuccessListener
+                }
+
                 val students = mutableListOf<Student>()
                 val memberIds = members.filterValues { it == true }.keys.mapNotNull { it as? String }
 
+                studentList.clear()
+                adapter.notifyDataSetChanged()
+
                 if (memberIds.isEmpty()) {
-                    Toast.makeText(this, "No hay estudiantes en este club", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "No hay estudiantes activos en este club", Toast.LENGTH_SHORT).show()
                     return@addOnSuccessListener
                 }
 
@@ -183,27 +196,46 @@ class DataActivity : AppCompatActivity() {
                     db.collection("students").document(id)
                         .get()
                         .addOnSuccessListener { studentDoc ->
-                            val name = studentDoc.getString("name") ?: ""
-                            val email = studentDoc.getString("email") ?: ""
-                            students.add(Student(id, name, email))
+                            if (studentDoc.exists()) {
+                                val name = studentDoc.getString("name") ?: ""
+                                val email = studentDoc.getString("email") ?: ""
+                                students.add(Student(id, name, email))
+                            }
 
                             loadedCount++
                             if (loadedCount == memberIds.size) {
-                                // Cuando ya se cargaron todos
-                                studentList.clear()
-                                studentList.addAll(students)
-                                val adapter = StudentAdapter(studentList)
-                                recyclerView.layoutManager = LinearLayoutManager(this)
-                                recyclerView.adapter = adapter
+                                // Actualizar la lista solo si encontramos estudiantes
+                                if (students.isNotEmpty()) {
+                                    studentList.clear()
+                                    studentList.addAll(students)
+                                    adapter.notifyDataSetChanged()
+                                } else {
+                                    Toast.makeText(this, "No se encontraron datos de estudiantes", Toast.LENGTH_SHORT).show()
+                                }
                             }
                         }
                         .addOnFailureListener {
                             loadedCount++
+                            if (loadedCount == memberIds.size && students.isEmpty()) {
+                                Toast.makeText(this, "No se pudieron cargar los estudiantes", Toast.LENGTH_SHORT).show()
+                            }
                         }
                 }
             }
             .addOnFailureListener {
+                studentList.clear()
+                adapter.notifyDataSetChanged()
                 Toast.makeText(this, "Error al obtener los datos del club", Toast.LENGTH_SHORT).show()
             }
+    }
+
+    private fun resetSpinner() {
+        spinnerClubs.visibility = View.GONE
+        spinnerClubs.isEnabled = true
+        spinnerClubs.adapter = null
+        clubList.clear()
+        clubNameToIdMap.clear()
+        studentList.clear()
+        adapter.notifyDataSetChanged()
     }
 }
