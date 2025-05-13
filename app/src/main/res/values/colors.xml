@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="primary">#6200EE</color>
+    <color name="primary_dark">#3700B3</color>
+    <color name="accent">#03DAC5</color>
+    <color name="table_header">#6200EE</color>
+    <color name="table_row_even">#FFFFFF</color>
+    <color name="table_row_odd">#F5F5F5</color>
+    <color name="text_white">#FFFFFF</color>
+    <color name="text_primary">#212121</color>
+    <color name="divider">#E0E0E0</color>
 </resources>

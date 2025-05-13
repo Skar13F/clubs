@@ -1,5 +1,6 @@
 package com.example.clubs
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.*
@@ -14,6 +15,7 @@ class DataActivity : AppCompatActivity() {
 
     private lateinit var etStudentId: EditText
     private lateinit var btnVerify: Button
+    private lateinit var btnBack: Button
     private lateinit var spinnerClubs: Spinner
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: StudentAdapter
@@ -48,6 +50,16 @@ class DataActivity : AppCompatActivity() {
             } else {
                 Toast.makeText(this, "Por favor ingresa un ID", Toast.LENGTH_SHORT).show()
             }
+        }
+
+        btnBack = findViewById(R.id.btnBack)
+        btnBack.setOnClickListener {
+            finish() // Esto debería funcionar si navegaste correctamente
+
+            val intent = Intent(this, MainActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+            startActivity(intent)
+            finish()
         }
     }
 
