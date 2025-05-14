@@ -53,7 +53,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="Verificar ID"
-                android:backgroundTint="@color/primary"
+                android:backgroundTint="@color/btn_ok"
                 android:textColor="@color/text_white"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>

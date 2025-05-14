@@ -36,6 +36,14 @@ class MainActivity : AppCompatActivity() {
 
         setupCardElevationEffects(registerCard)
         setupCardElevationEffects(viewDataCard)
+
+        val exitCard = findViewById<View>(R.id.btnExit)
+
+        exitCard.setOnClickListener {
+            finishAffinity()
+        }
+        setupCardElevationEffects(exitCard)
+
     }
 
     private fun navigateToActivity(activityClass: Class<*>) {

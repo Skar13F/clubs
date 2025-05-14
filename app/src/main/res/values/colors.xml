@@ -3,7 +3,7 @@
     <color name="primary">#3F51B5</color>          <!-- Azul primario -->
     <color name="primary_dark">#303F9F</color>      <!-- Azul oscuro -->
     <color name="primary_light">#C5CAE9</color>     <!-- Azul claro -->
-    <color name="accent">#FF4081</color>            <!-- Rosa/accent -->
+    <color name="btn_ok">#2E686F</color>            <!-- Rosa/accent -->
 
     <!-- Colores de texto -->
     <color name="text_primary">#212121</color>      <!-- Texto principal -->
@@ -22,4 +22,5 @@
     <color name="button_background">#3F51B5</color> <!-- Fondo de botones -->
     <color name="hint_color">#9E9E9E</color>       <!-- Color para hints -->
     <color name="spinner_background">#FFFFFF</color><!-- Fondo del spinner -->
+    <color name="error">#C07070</color>
 </resources>
